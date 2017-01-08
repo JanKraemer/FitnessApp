@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">GetInShape</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <!-- strings for the burger menu -->
+    <string name="nav_person">Körperdaten</string>
+    <string name="nav_goals">Ziele</string>
+    <string name="nav_statistics">Statistiken</string>
+    <string name="nav_chronic">Chronik</string>
+    <string name="nav_about_us">Über uns</string>
+    <string name="nav_options">Einstellungen</string>
+    <string name="nav_support">Hilfe</string>
+
+
+    <string name="action_settings">Settings</string>
+</resources>
