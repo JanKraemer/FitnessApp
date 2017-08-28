@@ -12,10 +12,10 @@ public class Training {
     private Integer id;
 
     @DatabaseField(canBeNull = false)
-    private String from;
+    private long from;
 
     @DatabaseField(canBeNull = false)
-    private String till;
+    private long till;
 
     @DatabaseField(canBeNull = false)
     private String title;
@@ -26,20 +26,12 @@ public class Training {
     @DatabaseField(canBeNull = false)
     private ExerciseType type;
 
-    public String getFrom() {
+    public long getFrom() {
         return from;
     }
 
-    public void setFrom(String from) {
+    public void setFrom(long from) {
         this.from = from;
-    }
-
-    public String getTill() {
-        return till;
-    }
-
-    public void setTill(String till) {
-        this.till = till;
     }
 
     public String getTitle() {
@@ -49,6 +41,16 @@ public class Training {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public long getTill() {
+        return till;
+    }
+
+    public void setTill(long till) {
+        this.till = till;
+    }
+
+
 
     public ForeignCollection<Exercise> getExercises() {
         return exercises;

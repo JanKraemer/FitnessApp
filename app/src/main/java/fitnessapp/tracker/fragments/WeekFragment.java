@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -73,13 +74,22 @@ public class WeekFragment extends Fragment {
             @Override
             public void run() {
                 try{
-                    List<Training> items = getHelper().getTrainingDao().queryForAll();
-                    adapter.addTrainingsToAdapter(items);
+                    QueryBuilder<Training, Integer> queryBuilder = getHelper().getTrainingDao().queryBuilder();
+                    List<Training> trainings = queryBuilder.where().ge("from",getMondayMorning()).query();
+                    adapter.addTrainingsToAdapter(trainings);
                 }catch (SQLException e){
                     Log.e("SQL Exception", "Error on loading the trainings.",e);
                 }
             }
         });
+    }
+
+    private long getMondayMorning() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        cal.set(Calendar.HOUR_OF_DAY,0);
+        cal.set(Calendar.MINUTE, 0);
+        return cal.getTimeInMillis();
     }
 
 
@@ -99,4 +109,6 @@ public class WeekFragment extends Fragment {
         }
         return databaseHelper;
     }
+
+
 }

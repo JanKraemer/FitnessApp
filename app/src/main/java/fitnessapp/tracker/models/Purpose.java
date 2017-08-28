@@ -18,7 +18,7 @@ public class Purpose {
     private double reachedValue;
 
     @DatabaseField(canBeNull = false)
-    private String till;
+    private long till;
 
     @DatabaseField(canBeNull = false)
     private boolean increase;
@@ -58,11 +58,11 @@ public class Purpose {
         this.reachedValue = reachedValue;
     }
 
-    public String getTill() {
+    public long getTill() {
         return till;
     }
 
-    public void setTill(String till) {
+    public void setTill(long till) {
         this.till = till;
     }
 

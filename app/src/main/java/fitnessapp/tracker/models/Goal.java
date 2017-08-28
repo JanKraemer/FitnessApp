@@ -18,7 +18,7 @@ public class Goal {
     ForeignCollection<Purpose> purposes;
 
     @DatabaseField()
-    private String till;
+    private long till;
 
     public Integer getId() {
         return id;
@@ -44,11 +44,11 @@ public class Goal {
         this.purposes = purposes;
     }
 
-    public String getTill() {
+    public long getTill() {
         return till;
     }
 
-    public void setTill(String till) {
+    public void setTill(long till) {
         this.till = till;
     }
 }
