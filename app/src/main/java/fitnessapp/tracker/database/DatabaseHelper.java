@@ -66,7 +66,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     }
 
 
-
     /**
      * Close the database connections and clear any cached DAOs.
      */
