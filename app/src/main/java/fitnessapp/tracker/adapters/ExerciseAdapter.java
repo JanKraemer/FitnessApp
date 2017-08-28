@@ -5,13 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import fitnessapp.tracker.R;
 import fitnessapp.tracker.interfaces.IOnItemClickListener;
-import fitnessapp.tracker.models.Exercise;
 import fitnessapp.tracker.models.ExerciseType;
 import fitnessapp.tracker.models.Training;
 
@@ -49,14 +51,14 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseViewHolder> {
 
     private void setImageOnCardView(ExerciseViewHolder holder, Training training) {
         if(training.getType().equals(ExerciseType.AUSDAUER)){
-            holder.image.setImageDrawable(context.getDrawable(R.drawable.ic_history_black_24dp));
+            holder.image.setImageDrawable(context.getDrawable(R.drawable.ic_cardio));
         }else if (training.getType().equals(ExerciseType.BODYBUILDING)){
-            holder.image.setImageDrawable(context.getDrawable(R.drawable.ic_history_black_24dp));
+            holder.image.setImageDrawable(context.getDrawable(R.drawable.ic_bodybuilding));
         }
     }
 
     private String convertDateToValue(Training training) {
-        return "";
+        return getTrainingDay(training) + getTrainingTime(training);
     }
 
     @Override
@@ -67,4 +69,14 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseViewHolder> {
     public void addTrainingsToAdapter(List<Training> trainings){
         this.trainings = trainings;
     }
+
+    private String getTrainingDay(Training training){
+       return new SimpleDateFormat("EEEE",Locale.GERMANY).format(training.getFrom());
+    }
+
+    private String getTrainingTime(Training training){
+        DateFormat format = new SimpleDateFormat("HH:mm", Locale.GERMANY);
+        return format.format(training.getFrom()) + " - " + format.format(training.getTill());
+    }
+
 }
