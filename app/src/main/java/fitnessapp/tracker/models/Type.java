@@ -1,5 +1,5 @@
 package fitnessapp.tracker.models;
 
-public enum GoalType {
+public enum Type {
     EXERCISE, BODY
 }
