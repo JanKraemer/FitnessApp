@@ -7,17 +7,17 @@ import android.widget.TextView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import fitnessapp.tracker.R;
-import fitnessapp.tracker.interfaces.IOnItemClickListener;
+import fitnessapp.tracker.interfaces.OnItemClickListener;
 
 public class ExerciseViewHolder extends RecyclerView.ViewHolder {
 
-    private IOnItemClickListener clickListener;
+    private OnItemClickListener clickListener;
     private CardView cardView;
     CircleImageView image;
     TextView title;
     TextView day;
 
-    public ExerciseViewHolder( View itemView, IOnItemClickListener clickListener ) {
+    public ExerciseViewHolder( View itemView, OnItemClickListener clickListener ) {
         super( itemView );
         this.clickListener = clickListener;
         this.cardView = ( CardView ) itemView.findViewById( R.id.training );

@@ -19,7 +19,7 @@ import java.util.List;
 import fitnessapp.tracker.R;
 import fitnessapp.tracker.adapters.ExerciseAdapter;
 import fitnessapp.tracker.database.DatabaseHelper;
-import fitnessapp.tracker.interfaces.IOnItemClickListener;
+import fitnessapp.tracker.interfaces.OnItemClickListener;
 import fitnessapp.tracker.models.Training;
 
 public class MonthFragment extends Fragment {
@@ -28,13 +28,7 @@ public class MonthFragment extends Fragment {
     private ExerciseAdapter adapter;
     private DatabaseHelper databaseHelper;
 
-    public MonthFragment( ) {
-    }
-
-    public static int getNumberOfWeek( ) {
-        Calendar calendar = Calendar.getInstance( );
-        return calendar.get( Calendar.WEEK_OF_YEAR );
-    }
+    public MonthFragment( ) { }
 
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container,
@@ -46,20 +40,19 @@ public class MonthFragment extends Fragment {
         return view;
     }
 
-
+    /**
+     *
+     * @return a new instance of this fragment
+     */
     public static Fragment newInstance( ) {
-        Bundle args = new Bundle( );
-        args.putInt( MONTH, getNumberOfWeek( ) );
-        WeekFragment fragment = new WeekFragment( );
-        fragment.setArguments( args );
-        return fragment;
+        return new WeekFragment( );
     }
 
     private void initRecyclerView( View view ) {
         RecyclerView recyclerView = ( RecyclerView ) view.findViewById( R.id.recyclerview_main );
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager( getActivity( ) );
         recyclerView.setLayoutManager( linearLayoutManager );
-        adapter = new ExerciseAdapter( getActivity( ), new IOnItemClickListener( ) {
+        adapter = new ExerciseAdapter( getActivity( ), new OnItemClickListener( ) {
             @Override
             public void onClick( int position ) {
                 //open a DetailView for the Training with all Exercises and so on.
@@ -68,16 +61,31 @@ public class MonthFragment extends Fragment {
         recyclerView.setAdapter( adapter );
     }
 
+    /**
+     * Call all trainings of the current month and set them to the Adapter
+     */
     private void callDatabaseExercises( ) {
         try {
-            QueryBuilder< Training, Integer > queryBuilder = getHelper( ).getTrainingDao( ).queryBuilder( );
-            List< Training > trainings = queryBuilder.where( ).ge( "date", getFirstDayOfMonth( ) ).query( );
+            QueryBuilder< Training, Integer > queryBuilder = getHelper( )
+                    .getTrainingDao( )
+                    .queryBuilder( );
+
+            List< Training > trainings = queryBuilder
+                    .where( )
+                    .ge( "date", getFirstDayOfMonth( ) )
+                    .query( );
+
             adapter.addTrainingsToAdapter( trainings );
         } catch ( SQLException e ) {
             Log.e( "SQL Exception", "Error on loading the trainings.", e );
         }
     }
 
+    /**
+     * Calculate the date of the first day of this month as long value.
+     *
+     * @return long Value of the first day  of the current month
+     */
     private long getFirstDayOfMonth( ) {
         Calendar cal = Calendar.getInstance( );
         cal.set( Calendar.DAY_OF_MONTH, 1 );
@@ -86,6 +94,11 @@ public class MonthFragment extends Fragment {
         return cal.getTimeInMillis( );
     }
 
+    /**
+     * Initialize the Databasehelper as Singleton for the work.
+     *
+     * @return databaseHelper
+     */
     private DatabaseHelper getHelper( ) {
         if ( databaseHelper == null ) {
             databaseHelper =
@@ -95,7 +108,9 @@ public class MonthFragment extends Fragment {
         return databaseHelper;
     }
 
-
+    /**
+     *  Release the actual DatabaseHelper
+     */
     @Override
     public void onDestroy( ) {
         super.onDestroy( );

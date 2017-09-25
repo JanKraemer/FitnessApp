@@ -15,6 +15,11 @@ import java.sql.SQLException;
 import fitnessapp.tracker.models.Goal;
 import fitnessapp.tracker.models.Training;
 
+/**
+ * The DatabaseHelper handels the database creation and all create table statements.
+ *
+ * Additionally it has a method for every Dao which will be needed in the programm.
+ */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     // name of the database file for your application -- change to something appropriate for your app
@@ -23,7 +28,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     // create a log name
     private final String LOG_NAME = getClass( ).getName( );
-    // the DAO object we use to access the SimpleData table
+    // the DAO object we use to access the goals table
     private RuntimeExceptionDao< Goal, Integer > goalsDao = null;
     private RuntimeExceptionDao< Training, Integer > trainingDao = null;
 
@@ -50,6 +55,12 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         }
     }
 
+    /**
+     * Creates a RuntimeExceptionDao for goals as Singleton
+     *
+     * @return a RuntimeExceptionDao for goals
+     * @throws SQLException if a sql exception occures
+     */
     public RuntimeExceptionDao< Goal, Integer > getGoalDao( ) throws SQLException {
         if ( goalsDao == null ) {
             goalsDao = RuntimeExceptionDao.createDao( connectionSource, Goal.class );
@@ -57,13 +68,18 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return goalsDao;
     }
 
+    /**
+     * Creates a RuntimeExceptionDao for trainings as Singleton
+     *
+     * @return a RuntimeExceptionDao for trainings
+     * @throws SQLException if a sql exception occures
+     */
     public RuntimeExceptionDao< Training, Integer > getTrainingDao( ) throws SQLException {
         if ( trainingDao == null ) {
             trainingDao = RuntimeExceptionDao.createDao( connectionSource, Training.class );
         }
         return trainingDao;
     }
-
 
     /**
      * Close the database connections and clear any cached DAOs.

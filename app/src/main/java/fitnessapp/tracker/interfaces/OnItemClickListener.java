@@ -1,5 +1,5 @@
 package fitnessapp.tracker.interfaces;
 
-public interface IOnItemClickListener {
+public interface OnItemClickListener {
     void onClick( int position );
 }

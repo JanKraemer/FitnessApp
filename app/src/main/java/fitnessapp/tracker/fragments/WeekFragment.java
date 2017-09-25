@@ -1,10 +1,7 @@
 package fitnessapp.tracker.fragments;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,9 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
-import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
-import com.j256.ormlite.dao.RuntimeExceptionDao;
-import com.j256.ormlite.field.types.SqlDateType;
 import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
@@ -23,10 +17,9 @@ import java.util.Calendar;
 import java.util.List;
 
 import fitnessapp.tracker.R;
-import fitnessapp.tracker.activities.MainActivity;
 import fitnessapp.tracker.adapters.ExerciseAdapter;
 import fitnessapp.tracker.database.DatabaseHelper;
-import fitnessapp.tracker.interfaces.IOnItemClickListener;
+import fitnessapp.tracker.interfaces.OnItemClickListener;
 import fitnessapp.tracker.models.Training;
 
 public class WeekFragment extends Fragment {
@@ -37,13 +30,7 @@ public class WeekFragment extends Fragment {
     private ExerciseAdapter adapter;
     private DatabaseHelper databaseHelper;
 
-    public WeekFragment( ) {
-    }
-
-    public static int getNumberOfWeek( ) {
-        Calendar calendar = Calendar.getInstance( );
-        return calendar.get( Calendar.WEEK_OF_YEAR );
-    }
+    public WeekFragment( ) { }
 
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container,
@@ -55,20 +42,20 @@ public class WeekFragment extends Fragment {
         return view;
     }
 
-
+    /**
+     * Generate a new Fragment from this class with week as argument
+     *
+     * @return Fragment of this class
+     */
     public static Fragment newInstance( ) {
-        Bundle args = new Bundle( );
-        args.putInt( WEEK, getNumberOfWeek( ) );
-        WeekFragment fragment = new WeekFragment( );
-        fragment.setArguments( args );
-        return fragment;
+        return new WeekFragment( );
     }
 
     private void initRecyclerView( View view ) {
         recyclerView = ( RecyclerView ) view.findViewById( R.id.recyclerview_main );
         linearLayoutManager = new LinearLayoutManager( getActivity( ) );
         recyclerView.setLayoutManager( linearLayoutManager );
-        adapter = new ExerciseAdapter( getActivity( ), new IOnItemClickListener( ) {
+        adapter = new ExerciseAdapter( getActivity( ), new OnItemClickListener( ) {
             @Override
             public void onClick( int position ) {
                 //open a DetailView for the Training with all Exercises and so on.
@@ -77,16 +64,31 @@ public class WeekFragment extends Fragment {
         recyclerView.setAdapter( adapter );
     }
 
+    /**
+     * Call all trainings of the current week and set them to the Adapter
+     */
     private void callDatabaseExercises( ) {
         try {
-            QueryBuilder< Training, Integer > queryBuilder = getHelper( ).getTrainingDao( ).queryBuilder( );
-            List< Training > trainings = queryBuilder.where( ).ge( "date", getMondayMorning( ) ).query( );
+            QueryBuilder< Training, Integer > queryBuilder = getHelper( )
+                    .getTrainingDao( )
+                    .queryBuilder( );
+
+            List< Training > trainings = queryBuilder
+                    .where( )
+                    .ge( "date", getMondayMorning( ) )
+                    .query( );
+
             adapter.addTrainingsToAdapter( trainings );
         } catch ( SQLException e ) {
             Log.e( "SQL Exception", "Error on loading the trainings.", e );
         }
     }
 
+    /**
+     * Calculate the date of monday of this week as long value.
+     *
+     * @return long Value of the monday of the current week
+     */
     private long getMondayMorning( ) {
         Calendar cal = Calendar.getInstance( );
         cal.set( Calendar.DAY_OF_WEEK, Calendar.MONDAY );
@@ -95,6 +97,11 @@ public class WeekFragment extends Fragment {
         return cal.getTimeInMillis( );
     }
 
+    /**
+     * Initialize the Databasehelper as Singleton for the work.
+     *
+     * @return databaseHelper
+     */
     private DatabaseHelper getHelper( ) {
         if ( databaseHelper == null ) {
             databaseHelper =
@@ -104,7 +111,9 @@ public class WeekFragment extends Fragment {
         return databaseHelper;
     }
 
-
+    /**
+     *  Release the actual DatabaseHelper
+     */
     @Override
     public void onDestroy( ) {
         super.onDestroy( );

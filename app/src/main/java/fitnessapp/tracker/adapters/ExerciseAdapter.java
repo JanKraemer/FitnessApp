@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fitnessapp.tracker.R;
-import fitnessapp.tracker.interfaces.IOnItemClickListener;
+import fitnessapp.tracker.interfaces.OnBottomListener;
+import fitnessapp.tracker.interfaces.OnItemClickListener;
 import fitnessapp.tracker.models.TrainingsType;
 import fitnessapp.tracker.models.Training;
 
@@ -20,13 +21,14 @@ public class ExerciseAdapter extends RecyclerView.Adapter< ExerciseViewHolder > 
 
     private Context context;
     private List< Training > trainings;
-    private IOnItemClickListener clickListener;
+    private OnItemClickListener clickListener;
 
-    public ExerciseAdapter( Context context, IOnItemClickListener clickListener ) {
+    public ExerciseAdapter( Context context, OnItemClickListener clickListener ) {
         this( context, clickListener, new ArrayList< Training >( ) );
     }
 
-    private ExerciseAdapter( Context context, IOnItemClickListener clickListener, ArrayList< Training > trainings ) {
+    private ExerciseAdapter( Context context, OnItemClickListener clickListener,
+                             ArrayList< Training > trainings ) {
         this.context = context;
         this.clickListener = clickListener;
         this.trainings = trainings;
