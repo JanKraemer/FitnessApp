@@ -6,16 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import fitnessapp.tracker.R;
 import fitnessapp.tracker.interfaces.IOnItemClickListener;
-import fitnessapp.tracker.models.ExerciseType;
+import fitnessapp.tracker.models.TrainingsType;
 import fitnessapp.tracker.models.Training;
+
+import static fitnessapp.tracker.interfaces.ZoneIds.FORMATTER;
 
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseViewHolder> {
 
@@ -27,7 +26,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseViewHolder> {
         this(context,clickListener,new ArrayList<Training>());
     }
 
-    public ExerciseAdapter(Context context, IOnItemClickListener clickListener, ArrayList<Training> trainings) {
+    private ExerciseAdapter(Context context, IOnItemClickListener clickListener, ArrayList<Training> trainings) {
         this.context = context;
         this.clickListener = clickListener;
         this.trainings = trainings;
@@ -39,26 +38,22 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseViewHolder> {
         return new ExerciseViewHolder(view,clickListener);
     }
 
-    // Set the correct Picture
+    //TODO Set the correct Picture
     @Override
     public void onBindViewHolder(ExerciseViewHolder holder, int position) {
         Training training = trainings.get(position);
         holder.title.setText(training.getTitle());
-        holder.day.setText(convertDateToValue(training));
+        holder.day.setText(getTrainingDay(training));
         setImageOnCardView(holder,training);
         holder.setClickListener(position);
     }
 
     private void setImageOnCardView(ExerciseViewHolder holder, Training training) {
-        if(training.getType().equals(ExerciseType.AUSDAUER)){
+        if(training.getType().equals(TrainingsType.ENDURANCE)){
             holder.image.setImageDrawable(context.getDrawable(R.drawable.ic_cardio));
-        }else if (training.getType().equals(ExerciseType.BODYBUILDING)){
+        }else if (training.getType().equals(TrainingsType.BODYBUILDING)){
             holder.image.setImageDrawable(context.getDrawable(R.drawable.ic_bodybuilding));
         }
-    }
-
-    private String convertDateToValue(Training training) {
-        return getTrainingDay(training) + getTrainingTime(training);
     }
 
     @Override
@@ -71,12 +66,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseViewHolder> {
     }
 
     private String getTrainingDay(Training training){
-       return new SimpleDateFormat("EEEE",Locale.GERMANY).format(training.getFrom());
-    }
-
-    private String getTrainingTime(Training training){
-        DateFormat format = new SimpleDateFormat("HH:mm", Locale.GERMANY);
-        return format.format(training.getFrom()) + " - " + format.format(training.getTill());
+       return FORMATTER.format(training.getDate());
     }
 
 }

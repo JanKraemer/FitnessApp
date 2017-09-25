@@ -35,6 +35,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try{
             TableUtils.createTableIfNotExists(connectionSource,Goal.class);
+            TableUtils.createTableIfNotExists(connectionSource,Training.class);
         }catch (SQLException e){
             Log.e(LOG_NAME,"Could not create database tables.",e);
         }
@@ -49,18 +50,18 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         }
     }
 
-    public Dao<Goal,Integer> getGoalDao() throws SQLException{
+    public RuntimeExceptionDao<Goal,Integer> getGoalDao() throws SQLException{
         if(goalsDao == null)
         {
-            goalsDao = getDao(Goal.class);
+            goalsDao = RuntimeExceptionDao.createDao(connectionSource, Goal.class);
         }
         return goalsDao;
     }
 
-    public Dao<Training,Integer> getTrainingDao() throws SQLException{
+    public RuntimeExceptionDao<Training,Integer> getTrainingDao() throws SQLException{
         if(trainingDao == null)
         {
-            trainingDao = getDao(Training.class);
+            trainingDao = RuntimeExceptionDao.createDao(connectionSource, Training.class);
         }
         return trainingDao;
     }
