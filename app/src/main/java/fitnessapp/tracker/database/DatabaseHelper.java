@@ -2,6 +2,7 @@ package fitnessapp.tracker.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.design.widget.TabLayout;
 import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
@@ -12,8 +13,11 @@ import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
+import fitnessapp.tracker.models.Exercise;
 import fitnessapp.tracker.models.Goal;
+import fitnessapp.tracker.models.Purpose;
 import fitnessapp.tracker.models.Training;
+import fitnessapp.tracker.models.Workload;
 
 /**
  * The DatabaseHelper handels the database creation and all create table statements.
@@ -41,6 +45,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         try {
             TableUtils.createTableIfNotExists( connectionSource, Goal.class );
             TableUtils.createTableIfNotExists( connectionSource, Training.class );
+            TableUtils.createTableIfNotExists( connectionSource, Exercise.class );
+            TableUtils.createTableIfNotExists( connectionSource, Purpose.class );
+            TableUtils.createTableIfNotExists( connectionSource, Workload.class );
         } catch ( SQLException e ) {
             Log.e( LOG_NAME, "Could not create database tables.", e );
         }
