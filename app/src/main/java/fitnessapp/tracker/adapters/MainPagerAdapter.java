@@ -1,22 +1,21 @@
 package fitnessapp.tracker.adapters;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import fitnessapp.tracker.fragments.MonthFragment;
 import fitnessapp.tracker.fragments.WeekFragment;
 
 
 public class MainPagerAdapter extends FragmentPagerAdapter {
 
-    private Context context;
+
     private String[] titles;
 
-    public MainPagerAdapter(Context context, FragmentManager fm, String[] titles) {
+    public MainPagerAdapter(FragmentManager fm, String[] titles) {
         super(fm);
         this.titles = titles;
-        this.context = context;
     }
 
     @Override
@@ -27,10 +26,10 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
                 return WeekFragment.newInstance();
 
             case 1:
-                return new Fragment();
+                return MonthFragment.newInstance();
 
             default:
-                return new Fragment();
+                return WeekFragment.newInstance();
         }
     }
 

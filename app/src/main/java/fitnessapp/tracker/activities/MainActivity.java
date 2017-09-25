@@ -1,5 +1,6 @@
 package fitnessapp.tracker.activities;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -38,9 +39,8 @@ import fitnessapp.tracker.models.Training;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private MainPagerAdapter mainPagerAdapter;
-    private ViewPager viewPager;
-    private TabLayout tabLayout;
+    private static final String[] titles  = {"Woche","Monat"};
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,46 +54,57 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initViewPager() {
-        String[] titles = new String[]{"Woche","Monat"};
+        MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager(),titles);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.container);
+        if (viewPager != null){
+            viewPager.setAdapter(mainPagerAdapter);
+        }
 
-        mainPagerAdapter = new MainPagerAdapter(this, getSupportFragmentManager(),titles);
-        viewPager = (ViewPager) findViewById(R.id.container);
-        viewPager.setAdapter(mainPagerAdapter);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-
+        if(tabLayout != null){
+            tabLayout.setupWithViewPager(viewPager);
+        }
     }
 
     private void setFloatinPointAction() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        if ( fab != null){
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            });
+        }
     }
 
     private void setNavigationDrawerOnActivity(Toolbar toolbar) {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        if ( drawer != null ){
+            drawer.addDrawerListener(toggle);
+            toggle.syncState();
+        }
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        if(navigationView != null){
+            navigationView.setNavigationItemSelectedListener(this);
+        }
+
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if ( drawerLayout != null ){
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START);
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
@@ -141,8 +152,7 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 }
