@@ -17,5 +17,7 @@
     <string name="today">Heute</string>
     <string name="yesterday">Gestern</string>
 
+    <string name="newTraining">Neues Training</string>
+
     <string name="action_settings">Settings</string>
 </resources>
