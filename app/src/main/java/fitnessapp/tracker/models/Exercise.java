@@ -5,50 +5,50 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "exercises")
+@DatabaseTable( tableName = "exercises" )
 public class Exercise {
 
-    @DatabaseField(generatedId = true)
+    @DatabaseField( generatedId = true )
     private Integer id;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField( canBeNull = false )
     private String name;
 
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<Workload> workloads;
+    @ForeignCollectionField( eager = true )
+    private ForeignCollection< Workload > workloads;
 
-    @DatabaseField(foreign = true)
+    @DatabaseField( foreign = true )
     private Training parent;
 
-    public Integer getId() {
+    public Integer getId( ) {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId( Integer id ) {
         this.id = id;
     }
 
-    public String getName() {
+    public String getName( ) {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName( String name ) {
         this.name = name;
     }
 
-    public ForeignCollection<Workload> getWorkloads() {
+    public ForeignCollection< Workload > getWorkloads( ) {
         return workloads;
     }
 
-    public void setWorkloads(ForeignCollection<Workload> workloads) {
+    public void setWorkloads( ForeignCollection< Workload > workloads ) {
         this.workloads = workloads;
     }
 
-    public Training getParent() {
+    public Training getParent( ) {
         return parent;
     }
 
-    public void setParent(Training parent) {
+    public void setParent( Training parent ) {
         this.parent = parent;
     }
 }

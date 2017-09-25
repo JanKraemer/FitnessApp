@@ -13,36 +13,36 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
 
     private String[] titles;
 
-    public MainPagerAdapter(FragmentManager fm, String[] titles) {
-        super(fm);
+    public MainPagerAdapter( FragmentManager fm, String[] titles ) {
+        super( fm );
         this.titles = titles;
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public Fragment getItem( int position ) {
 
-        switch (position){
+        switch ( position ) {
             case 0:
-                return WeekFragment.newInstance();
+                return WeekFragment.newInstance( );
 
             case 1:
-                return MonthFragment.newInstance();
+                return MonthFragment.newInstance( );
 
             default:
-                return WeekFragment.newInstance();
+                return WeekFragment.newInstance( );
         }
     }
 
     @Override
-    public int getCount() {
+    public int getCount( ) {
         // Show 3 total pages.
         return titles.length;
     }
 
     @Override
-    public CharSequence getPageTitle(int position) {
-        if(position < titles.length)
-            return titles[position];
+    public CharSequence getPageTitle( int position ) {
+        if ( position < titles.length )
+            return titles[ position ];
 
         return null;
     }

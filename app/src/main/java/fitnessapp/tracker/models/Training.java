@@ -5,61 +5,61 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "trainings")
+@DatabaseTable( tableName = "trainings" )
 public class Training {
 
-    @DatabaseField(generatedId = true)
+    @DatabaseField( generatedId = true )
     private Integer id;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField( canBeNull = false )
     private long date;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField( canBeNull = false )
     private String title;
 
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<Exercise> exercises;
+    @ForeignCollectionField( eager = true )
+    private ForeignCollection< Exercise > exercises;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField( canBeNull = false )
     private TrainingsType type;
 
-    public long getDate() {
+    public long getDate( ) {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate( long date ) {
         this.date = date;
     }
 
-    public String getTitle() {
+    public String getTitle( ) {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle( String title ) {
         this.title = title;
     }
 
-    public ForeignCollection<Exercise> getExercises() {
+    public ForeignCollection< Exercise > getExercises( ) {
         return exercises;
     }
 
-    public void setExercises(ForeignCollection<Exercise> exercises) {
+    public void setExercises( ForeignCollection< Exercise > exercises ) {
         this.exercises = exercises;
     }
 
-    public TrainingsType getType() {
+    public TrainingsType getType( ) {
         return type;
     }
 
-    public void setType(TrainingsType type) {
+    public void setType( TrainingsType type ) {
         this.type = type;
     }
 
-    public Integer getId() {
+    public Integer getId( ) {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId( Integer id ) {
         this.id = id;
     }
 }

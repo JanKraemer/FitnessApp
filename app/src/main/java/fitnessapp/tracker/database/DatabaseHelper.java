@@ -22,46 +22,44 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     // any time you make changes to your database objects, you may have to increase the database version
     private static final int DATABASE_VERSION = 1;
     // create a log name
-    private final String LOG_NAME = getClass().getName();
+    private final String LOG_NAME = getClass( ).getName( );
     // the DAO object we use to access the SimpleData table
-    private RuntimeExceptionDao<Goal, Integer> goalsDao = null;
-    private RuntimeExceptionDao<Training, Integer> trainingDao = null;
+    private RuntimeExceptionDao< Goal, Integer > goalsDao = null;
+    private RuntimeExceptionDao< Training, Integer > trainingDao = null;
 
-    public DatabaseHelper(Context context){
-        super(context,DATABASE_NAME,null,DATABASE_VERSION);
+    public DatabaseHelper( Context context ) {
+        super( context, DATABASE_NAME, null, DATABASE_VERSION );
     }
 
     @Override
-    public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
-        try{
-            TableUtils.createTableIfNotExists(connectionSource,Goal.class);
-            TableUtils.createTableIfNotExists(connectionSource,Training.class);
-        }catch (SQLException e){
-            Log.e(LOG_NAME,"Could not create database tables.",e);
+    public void onCreate( SQLiteDatabase database, ConnectionSource connectionSource ) {
+        try {
+            TableUtils.createTableIfNotExists( connectionSource, Goal.class );
+            TableUtils.createTableIfNotExists( connectionSource, Training.class );
+        } catch ( SQLException e ) {
+            Log.e( LOG_NAME, "Could not create database tables.", e );
         }
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
-        try{
-            TableUtils.createTableIfNotExists(connectionSource,Goal.class);
-        }catch (SQLException e){
-            Log.e(LOG_NAME,"Could not update database Tables.",e);
+    public void onUpgrade( SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion ) {
+        try {
+            TableUtils.createTableIfNotExists( connectionSource, Goal.class );
+        } catch ( SQLException e ) {
+            Log.e( LOG_NAME, "Could not update database Tables.", e );
         }
     }
 
-    public RuntimeExceptionDao<Goal,Integer> getGoalDao() throws SQLException{
-        if(goalsDao == null)
-        {
-            goalsDao = RuntimeExceptionDao.createDao(connectionSource, Goal.class);
+    public RuntimeExceptionDao< Goal, Integer > getGoalDao( ) throws SQLException {
+        if ( goalsDao == null ) {
+            goalsDao = RuntimeExceptionDao.createDao( connectionSource, Goal.class );
         }
         return goalsDao;
     }
 
-    public RuntimeExceptionDao<Training,Integer> getTrainingDao() throws SQLException{
-        if(trainingDao == null)
-        {
-            trainingDao = RuntimeExceptionDao.createDao(connectionSource, Training.class);
+    public RuntimeExceptionDao< Training, Integer > getTrainingDao( ) throws SQLException {
+        if ( trainingDao == null ) {
+            trainingDao = RuntimeExceptionDao.createDao( connectionSource, Training.class );
         }
         return trainingDao;
     }
@@ -71,8 +69,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
      * Close the database connections and clear any cached DAOs.
      */
     @Override
-    public void close() {
-        super.close();
+    public void close( ) {
+        super.close( );
         goalsDao = null;
     }
 }

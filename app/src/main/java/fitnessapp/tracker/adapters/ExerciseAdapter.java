@@ -16,57 +16,56 @@ import fitnessapp.tracker.models.Training;
 
 import static fitnessapp.tracker.interfaces.ZoneIds.FORMATTER;
 
-public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseViewHolder> {
+public class ExerciseAdapter extends RecyclerView.Adapter< ExerciseViewHolder > {
 
     private Context context;
-    private List<Training> trainings;
+    private List< Training > trainings;
     private IOnItemClickListener clickListener;
 
-    public ExerciseAdapter(Context context, IOnItemClickListener clickListener) {
-        this(context,clickListener,new ArrayList<Training>());
+    public ExerciseAdapter( Context context, IOnItemClickListener clickListener ) {
+        this( context, clickListener, new ArrayList< Training >( ) );
     }
 
-    private ExerciseAdapter(Context context, IOnItemClickListener clickListener, ArrayList<Training> trainings) {
+    private ExerciseAdapter( Context context, IOnItemClickListener clickListener, ArrayList< Training > trainings ) {
         this.context = context;
         this.clickListener = clickListener;
         this.trainings = trainings;
     }
 
     @Override
-    public ExerciseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.content_training,parent);
-        return new ExerciseViewHolder(view,clickListener);
+    public ExerciseViewHolder onCreateViewHolder( ViewGroup parent, int viewType ) {
+        View view = LayoutInflater.from( context ).inflate( R.layout.content_training, parent );
+        return new ExerciseViewHolder( view, clickListener );
     }
 
-    //TODO Set the correct Picture
     @Override
-    public void onBindViewHolder(ExerciseViewHolder holder, int position) {
-        Training training = trainings.get(position);
-        holder.title.setText(training.getTitle());
-        holder.day.setText(getTrainingDay(training));
-        setImageOnCardView(holder,training);
-        holder.setClickListener(position);
+    public void onBindViewHolder( ExerciseViewHolder holder, int position ) {
+        Training training = trainings.get( position );
+        holder.title.setText( training.getTitle( ) );
+        holder.day.setText( getTrainingDay( training ) );
+        setImageOnCardView( holder, training );
+        holder.setClickListener( position );
     }
 
-    private void setImageOnCardView(ExerciseViewHolder holder, Training training) {
-        if(training.getType().equals(TrainingsType.ENDURANCE)){
-            holder.image.setImageDrawable(context.getDrawable(R.drawable.ic_cardio));
-        }else if (training.getType().equals(TrainingsType.BODYBUILDING)){
-            holder.image.setImageDrawable(context.getDrawable(R.drawable.ic_bodybuilding));
+    private void setImageOnCardView( ExerciseViewHolder holder, Training training ) {
+        if ( training.getType( ).equals( TrainingsType.ENDURANCE ) ) {
+            holder.image.setImageDrawable( context.getDrawable( R.drawable.ic_cardio ) );
+        } else if ( training.getType( ).equals( TrainingsType.BODYBUILDING ) ) {
+            holder.image.setImageDrawable( context.getDrawable( R.drawable.ic_bodybuilding ) );
         }
     }
 
     @Override
-    public int getItemCount() {
-        return trainings.size();
+    public int getItemCount( ) {
+        return trainings.size( );
     }
 
-    public void addTrainingsToAdapter(List<Training> trainings){
+    public void addTrainingsToAdapter( List< Training > trainings ) {
         this.trainings = trainings;
     }
 
-    private String getTrainingDay(Training training){
-       return FORMATTER.format(training.getDate());
+    private String getTrainingDay( Training training ) {
+        return FORMATTER.format( training.getDate( ) );
     }
 
 }
