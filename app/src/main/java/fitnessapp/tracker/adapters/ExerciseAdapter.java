@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fitnessapp.tracker.R;
-import fitnessapp.tracker.interfaces.OnBottomListener;
 import fitnessapp.tracker.interfaces.OnItemClickListener;
 import fitnessapp.tracker.models.TrainingsType;
 import fitnessapp.tracker.models.Training;
@@ -44,7 +43,13 @@ public class ExerciseAdapter extends RecyclerView.Adapter< ExerciseViewHolder > 
     public void onBindViewHolder( ExerciseViewHolder holder, int position ) {
         Training training = trainings.get( position );
         holder.title.setText( training.getTitle( ) );
-        holder.day.setText( getTrainingDay( training ) );
+        if( training.wasToday( ) ) {
+            holder.day.setText( context.getString( R.string.today ) );
+        }else if ( training.wasYesterday() ){
+            holder.day.setText( context.getString( R.string.yesterday ) );
+        }else{
+            holder.day.setText( getTrainingDay( training ) );
+        }
         setImageOnCardView( holder, training );
         holder.setClickListener( position );
     }

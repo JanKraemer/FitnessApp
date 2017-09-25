@@ -14,6 +14,8 @@
     <string name="nav_options">Einstellungen</string>
     <string name="nav_support">Hilfe</string>
 
+    <string name="today">Heute</string>
+    <string name="yesterday">Gestern</string>
 
     <string name="action_settings">Settings</string>
 </resources>
