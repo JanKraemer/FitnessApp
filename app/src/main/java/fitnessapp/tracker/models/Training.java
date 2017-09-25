@@ -5,17 +5,14 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable
+@DatabaseTable(tableName = "trainings")
 public class Training {
 
     @DatabaseField(generatedId = true)
     private Integer id;
 
     @DatabaseField(canBeNull = false)
-    private long from;
-
-    @DatabaseField(canBeNull = false)
-    private long till;
+    private long date;
 
     @DatabaseField(canBeNull = false)
     private String title;
@@ -24,14 +21,14 @@ public class Training {
     private ForeignCollection<Exercise> exercises;
 
     @DatabaseField(canBeNull = false)
-    private ExerciseType type;
+    private TrainingsType type;
 
-    public long getFrom() {
-        return from;
+    public long getDate() {
+        return date;
     }
 
-    public void setFrom(long from) {
-        this.from = from;
+    public void setDate(long date) {
+        this.date = date;
     }
 
     public String getTitle() {
@@ -42,16 +39,6 @@ public class Training {
         this.title = title;
     }
 
-    public long getTill() {
-        return till;
-    }
-
-    public void setTill(long till) {
-        this.till = till;
-    }
-
-
-
     public ForeignCollection<Exercise> getExercises() {
         return exercises;
     }
@@ -60,11 +47,11 @@ public class Training {
         this.exercises = exercises;
     }
 
-    public ExerciseType getType() {
+    public TrainingsType getType() {
         return type;
     }
 
-    public void setType(ExerciseType type) {
+    public void setType(TrainingsType type) {
         this.type = type;
     }
 

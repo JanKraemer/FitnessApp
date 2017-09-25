@@ -10,7 +10,7 @@ public class Purpose {
     private Integer id;
 
     @DatabaseField(canBeNull = false)
-    private Type type;
+    private PurposeType type;
 
     @DatabaseField(canBeNull = false)
     private double targetValue;
@@ -23,6 +23,9 @@ public class Purpose {
     @DatabaseField(canBeNull = false)
     private boolean increase;
 
+    @DatabaseField()
+    private long lastUpdated;
+
     @DatabaseField(foreign = true)
     private Goal parent;
 
@@ -34,11 +37,11 @@ public class Purpose {
         this.id = id;
     }
 
-    public Type getType() {
+    public PurposeType getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(PurposeType type) {
         this.type = type;
     }
 
@@ -58,14 +61,6 @@ public class Purpose {
         this.reachedValue = reachedValue;
     }
 
-    public long getTill() {
-        return till;
-    }
-
-    public void setTill(long till) {
-        this.till = till;
-    }
-
     public boolean isIncrease() {
         return increase;
     }
@@ -74,8 +69,25 @@ public class Purpose {
         this.increase = increase;
     }
 
+    //TODO add logic to method
     public boolean isAchieved(){
         return false;
+    }
+
+    public long getTill() {
+        return till;
+    }
+
+    public void setTill(long till) {
+        this.till = till;
+    }
+
+    public long getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(long lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
     public Goal getParent() {
@@ -85,4 +97,5 @@ public class Purpose {
     public void setParent(Goal parent) {
         this.parent = parent;
     }
+
 }
