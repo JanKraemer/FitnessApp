@@ -17,24 +17,11 @@ import fitnessapp.tracker.models.Training;
 
 public class AddTrainingActivity extends AppCompatActivity {
 
-    private boolean closeFlag = false;
-
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add_training );
         initActionbar( );
-    }
-
-    private void initActionbar( ) {
-        ActionBar actionBar = getSupportActionBar( );
-        if ( actionBar != null ) {
-            actionBar.setTitle( R.string.newTraining );
-            actionBar.setDisplayHomeAsUpEnabled( true );
-            actionBar.setDisplayShowHomeEnabled( true );
-            actionBar.setHomeAsUpIndicator(
-                    ContextCompat.getDrawable( this, R.drawable.ic_close_white_24dp ) );
-        }
     }
 
     @Override
@@ -53,10 +40,6 @@ public class AddTrainingActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected( item );
         }
-    }
-
-    private void saveTraining( ) {
-
     }
 
     @Override
@@ -86,4 +69,20 @@ public class AddTrainingActivity extends AppCompatActivity {
 
         dialog.show( );
     }
+
+    private void initActionbar( ) {
+        ActionBar actionBar = getSupportActionBar( );
+        if ( actionBar != null ) {
+            actionBar.setTitle( R.string.newTraining );
+            actionBar.setDisplayHomeAsUpEnabled( true );
+            actionBar.setDisplayShowHomeEnabled( true );
+            actionBar.setHomeAsUpIndicator(
+                    ContextCompat.getDrawable( this, R.drawable.ic_close_white_24dp ) );
+        }
+    }
+
+    private void saveTraining( ) {
+
+    }
+
 }
