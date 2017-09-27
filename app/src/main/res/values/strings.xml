@@ -26,5 +26,10 @@
     <string name="newTraining">Neues Training</string>
     <string name="action_save">Speichern</string>
 
+    <!-- strings for discard the dialogbox -->
+    <string name="discard_title">"Änderung verwerfen ?"</string>
+    <string name="discard">Verwerfen</string>
+    <string name="cancel">Abbrechen</string>
+
     <string name="action_settings">Settings</string>
 </resources>
