@@ -9,13 +9,23 @@
                 android:focusableInTouchMode="true"
                 tools:context="fitnessapp.tracker.activities.AddTrainingActivity">
 
-
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/event_title"
+            android:id="@+id/training_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/text_padding_left"
-            android:layout_marginEnd="@dimen/text_padding_right"
+            android:layout_marginTop="@dimen/text_margin_top"
+            android:layout_marginStart="@dimen/text_margin_left"
+            android:layout_marginEnd="@dimen/text_margin_right"
+            android:textSize="@dimen/text_size"
             android:inputType="textCapSentences"/>
+
+        <Spinner
+            android:id="@+id/type_spinner"
+            android:layout_width="@dimen/spinner_card_width"
+            android:layout_height="@dimen/spinner_card_height"
+            android:layout_marginTop="@dimen/spinner_margin_top"
+            android:layout_marginEnd="@dimen/spinner_margin_right"
+            android:layout_below="@id/training_title"
+            android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>
