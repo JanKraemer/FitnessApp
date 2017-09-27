@@ -11,8 +11,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
 
 import fitnessapp.tracker.R;
+import fitnessapp.tracker.adapters.SpinnerAdapter;
+import fitnessapp.tracker.models.SpinnerItem;
 import fitnessapp.tracker.models.Training;
 
 public class AddTrainingActivity extends AppCompatActivity {
@@ -22,6 +27,7 @@ public class AddTrainingActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add_training );
         initActionbar( );
+        initSpinner( );
     }
 
     @Override
@@ -56,13 +62,13 @@ public class AddTrainingActivity extends AppCompatActivity {
                 .setPositiveButton( R.string.discard, new DialogInterface.OnClickListener( ) {
                     @Override
                     public void onClick( DialogInterface dialog, int which ) {
-                        finish();
+                        finish( );
                     }
                 } )
                 .setNegativeButton( R.string.cancel, new DialogInterface.OnClickListener( ) {
                     @Override
                     public void onClick( DialogInterface dialog, int which ) {
-                        dialog.cancel();
+                        dialog.cancel( );
                     }
                 } )
                 .create( );
@@ -79,6 +85,16 @@ public class AddTrainingActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(
                     ContextCompat.getDrawable( this, R.drawable.ic_close_white_24dp ) );
         }
+    }
+
+    private void initSpinner( ) {
+        ArrayList< SpinnerItem > list = new ArrayList<>( );
+        list.add( new SpinnerItem( getString( R.string.bodybuilding ), R.drawable.ic_bodybuilding ) );
+        list.add( new SpinnerItem( getString( R.string.endurance ), R.drawable.ic_cardio ) );
+
+        Spinner sp = ( Spinner ) findViewById( R.id.type_spinner );
+        SpinnerAdapter adapter = new SpinnerAdapter( this, R.id.spinner_text, list );
+        sp.setAdapter( adapter );
     }
 
     private void saveTraining( ) {
