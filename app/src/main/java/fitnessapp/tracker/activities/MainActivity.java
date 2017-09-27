@@ -22,7 +22,6 @@ import fitnessapp.tracker.adapters.MainPagerAdapter;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String[] titles = { "Woche", "Monat" };
     private DrawerLayout drawerLayout;
 
     @Override
@@ -37,7 +36,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initViewPager( ) {
-        MainPagerAdapter mainPagerAdapter = new MainPagerAdapter( getSupportFragmentManager( ), titles );
+        MainPagerAdapter mainPagerAdapter =
+                new MainPagerAdapter( getSupportFragmentManager( ),
+                        getResources().getStringArray( R.array.tabbar_titles ) );
+
         ViewPager viewPager = ( ViewPager ) findViewById( R.id.container );
         if ( viewPager != null ) {
             viewPager.setAdapter( mainPagerAdapter );

@@ -10,7 +10,6 @@ import fitnessapp.tracker.fragments.WeekFragment;
 
 public class MainPagerAdapter extends FragmentPagerAdapter {
 
-
     private String[] titles;
 
     public MainPagerAdapter( FragmentManager fm, String[] titles ) {
