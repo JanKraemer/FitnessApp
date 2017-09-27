@@ -2,6 +2,7 @@ package fitnessapp.tracker.activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.SystemClock;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -21,6 +22,8 @@ import fitnessapp.tracker.models.SpinnerItem;
 import fitnessapp.tracker.models.Training;
 
 public class AddTrainingActivity extends AppCompatActivity {
+
+    private Spinner spinner;
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
@@ -92,13 +95,19 @@ public class AddTrainingActivity extends AppCompatActivity {
         list.add( new SpinnerItem( getString( R.string.bodybuilding ), R.drawable.ic_bodybuilding ) );
         list.add( new SpinnerItem( getString( R.string.endurance ), R.drawable.ic_cardio ) );
 
-        Spinner sp = ( Spinner ) findViewById( R.id.type_spinner );
         SpinnerAdapter adapter = new SpinnerAdapter( this, R.id.spinner_text, list );
-        sp.setAdapter( adapter );
+
+        spinner = ( Spinner ) findViewById( R.id.type_spinner );
+
+        if ( spinner != null ){
+            spinner.setAdapter( adapter );
+        }
+
+
     }
 
     private void saveTraining( ) {
-
+        SpinnerItem item = (SpinnerItem ) spinner.getSelectedItem( );
     }
 
 }

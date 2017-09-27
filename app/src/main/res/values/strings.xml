@@ -8,6 +8,8 @@
             <item>Monat</item>
     </string-array>
 
+    <string name="title">Titel</string>
+
     <!-- strings for the burger menu -->
     <string name="nav_person">Körperdaten</string>
     <string name="nav_goals">Ziele</string>

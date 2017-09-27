@@ -17,6 +17,7 @@
             android:layout_marginStart="@dimen/text_margin_left"
             android:layout_marginEnd="@dimen/text_margin_right"
             android:textSize="@dimen/text_size"
+            android:hint="@string/title"
             android:inputType="textCapSentences"/>
 
         <Spinner
