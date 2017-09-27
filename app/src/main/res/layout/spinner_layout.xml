@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="@dimen/spinner_card_width"
-              android:layout_height="@dimen/spinner_card_height">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spinner_card_height">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/spinner_image"
-        android:layout_width="@dimen/spinner_image_radius"
-        android:layout_height="@dimen/spinner_image_radius"
+        android:layout_width="@dimen/spinner_image_width"
+        android:layout_height="@dimen/spinner_image_height"
         android:paddingTop="@dimen/spinner_image_padding_top"
         android:paddingBottom="@dimen/spinner_image_padding_bottom"
-        android:paddingStart="@dimen/image_padding"/>
+        android:src="@color/cardview_dark_background"
+        android:paddingStart="@dimen/image_padding"
+        android:paddingEnd="@dimen/image_padding"/>
 
     <TextView
         android:id="@+id/spinner_text"
@@ -19,6 +22,8 @@
         android:paddingEnd="@dimen/text_padding_right"
         android:paddingStart="@dimen/text_padding_left"
         android:textSize="@dimen/title_text_size"
+        android:text="hallo"
+        android:layout_marginStart="@dimen/spinner_text_margin_left"
         android:gravity="center_vertical" >
     </TextView>
 

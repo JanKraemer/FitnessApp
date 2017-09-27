@@ -1,32 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="false"
+              android:focusable="true"
+              android:focusableInTouchMode="true"
+              android:orientation="vertical"
+              android:weightSum="2"
+              tools:context="fitnessapp.tracker.activities.AddTrainingActivity">
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/training_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/text_margin_right"
+        android:layout_marginStart="@dimen/text_margin_left"
+        android:layout_marginTop="@dimen/text_margin_top"
+        android:hint="@string/title"
+        android:inputType="textCapSentences"
+        android:textSize="@dimen/text_size"/>
+
+    <Spinner
+        android:id="@+id/type_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spinner_card_height"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/spinner_margin_right"
+        android:layout_marginTop="@dimen/spinner_margin_top"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="@dimen/shadow_item_width"
+            android:layout_height="match_parent">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/training_date"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="false"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                tools:context="fitnessapp.tracker.activities.AddTrainingActivity">
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/text_margin_between"
+                android:layout_marginStart="@dimen/text_margin_between"
+                android:layout_marginTop="@dimen/text_margin_top"
+                android:focusable="false"
+                android:text="@string/date"
+                android:textSize="@dimen/text_size"/>
 
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/training_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/text_margin_top"
-            android:layout_marginStart="@dimen/text_margin_left"
-            android:layout_marginEnd="@dimen/text_margin_right"
-            android:textSize="@dimen/text_size"
-            android:hint="@string/title"
-            android:inputType="textCapSentences"/>
+        </LinearLayout>
 
-        <Spinner
-            android:id="@+id/type_spinner"
-            android:layout_width="@dimen/spinner_card_width"
-            android:layout_height="@dimen/spinner_card_height"
-            android:layout_marginTop="@dimen/spinner_margin_top"
-            android:layout_marginEnd="@dimen/spinner_margin_right"
-            android:layout_below="@id/training_title"
-            android:layout_alignParentEnd="true"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-</RelativeLayout>
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/training_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/text_margin_right"
+                android:layout_marginStart="@dimen/text_margin_between"
+                android:layout_marginTop="@dimen/text_margin_top"
+                android:focusable="false"
+                android:text="@string/time"
+                android:textSize="@dimen/text_size"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
+

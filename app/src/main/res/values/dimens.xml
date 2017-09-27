@@ -26,7 +26,7 @@
     <dimen name="appbar_padding_top">8dp</dimen>
 
     <!-- Edit Text fields margins -->
-    <dimen name="text_margin_top">8dp</dimen>
+    <dimen name="text_margin_top">16dp</dimen>
     <dimen name="text_margin_left">72dp</dimen>
     <dimen name="text_margin_right">16dp</dimen>
     <dimen name="text_size">16sp</dimen>
@@ -36,8 +36,16 @@
     <dimen name="spinner_card_width">336dp</dimen>
     <dimen name="spinner_margin_top">16dp</dimen>
     <dimen name="spinner_margin_right">16dp</dimen>
-    <dimen name="spinner_image_radius">56dp</dimen>
+
+    <dimen name="spinner_image_height">56dp</dimen>
+    <dimen name="spinner_image_width">72dp</dimen>
+
+    <dimen name="spinner_text_margin_left">4dp</dimen>
     <dimen name="spinner_image_padding_top">8dp</dimen>
     <dimen name="spinner_image_padding_bottom">8dp</dimen>
+
+    <!-- dimens for date and timepicker -->
+    <dimen name="shadow_item_width">64dp</dimen>
+    <dimen name="text_margin_between">8dp</dimen>
 
 </resources>

@@ -27,6 +27,8 @@
     <!-- strings for the create new training view -->
     <string name="newTraining">Neues Training</string>
     <string name="action_save">Speichern</string>
+    <string name="date">Heute</string>
+    <string name="time">08:00</string>
 
     <!-- strings for discard the dialogbox -->
     <string name="discard_title">"Änderung verwerfen ?"</string>
@@ -39,4 +41,6 @@
 
 
     <string name="action_settings">Settings</string>
+    <string name="timeInMilis">Time</string>
+
 </resources>
