@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="false"
-    tools:context="fitnessapp.tracker.activities.AddTrainingActivity">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="false"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                tools:context="fitnessapp.tracker.activities.AddTrainingActivity">
+
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/event_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_padding_left"
+            android:layout_marginEnd="@dimen/text_padding_right"
+            android:inputType="textCapSentences"/>
 
 </RelativeLayout>
