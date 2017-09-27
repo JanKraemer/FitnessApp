@@ -48,5 +48,4 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         calendar.set( Calendar.DAY_OF_MONTH, day );
         return calendar;
     }
-
 }
