@@ -31,5 +31,10 @@
     <string name="discard">Verwerfen</string>
     <string name="cancel">Abbrechen</string>
 
+    <!-- strins for different trainingtypes -->
+    <string name="bodybuilding">Bodybuilding</string>
+    <string name="endurance">Ausdauer</string>
+
+
     <string name="action_settings">Settings</string>
 </resources>
