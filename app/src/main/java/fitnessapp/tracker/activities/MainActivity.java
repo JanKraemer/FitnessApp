@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity
         if ( navigationView != null ) {
             navigationView.setNavigationItemSelectedListener( this );
         }
-
     }
 
     @Override

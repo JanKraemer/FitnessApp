@@ -56,7 +56,11 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onUpgrade( SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion ) {
         try {
-            TableUtils.createTableIfNotExists( connectionSource, Goal.class );
+            TableUtils.dropTable( goalsDao, true );
+            TableUtils.dropTable( trainingDao, true );
+
+
+            onCreate( database, connectionSource );
         } catch ( SQLException e ) {
             Log.e( LOG_NAME, "Could not update database Tables.", e );
         }

@@ -122,4 +122,5 @@ public class WeekFragment extends Fragment {
             databaseHelper = null;
         }
     }
+
 }
