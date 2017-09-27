@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">GetInShape</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string-array name="tabbar_titles">
+            <item>Woche</item>
+            <item>Monat</item>
+    </string-array>
 
     <!-- strings for the burger menu -->
     <string name="nav_person">Körperdaten</string>
@@ -14,10 +17,14 @@
     <string name="nav_options">Einstellungen</string>
     <string name="nav_support">Hilfe</string>
 
+    <!-- strings for the cards -->
     <string name="today">Heute</string>
     <string name="yesterday">Gestern</string>
 
+
+    <!-- strings for the create new training view -->
     <string name="newTraining">Neues Training</string>
+    <string name="action_save">Speichern</string>
 
     <string name="action_settings">Settings</string>
 </resources>
