@@ -15,6 +15,7 @@ import fitnessapp.tracker.interfaces.OnDateChangedListener;
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
     private OnDateChangedListener listener;
+    private Calendar calendar;
 
     @Override
     public void onAttach( Activity activity ) {
@@ -26,26 +27,25 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     public Dialog onCreateDialog( Bundle savedInstanceState ) {
         // Use the current date as the default date in the picker
 
-        long value = getArguments().getLong( getString( R.string.timeInMilis ) );
-        final Calendar c = Calendar.getInstance();
-        c.setTimeInMillis( value );
-        int year = c.get( Calendar.YEAR );
-        int month = c.get( Calendar.MONTH );
-        int day = c.get( Calendar.DAY_OF_MONTH );
+        long value = getArguments( ).getLong( getString( R.string.timeInMilis ) );
+        calendar = Calendar.getInstance( );
+        calendar.setTimeInMillis( value );
+        int year = calendar.get( Calendar.YEAR );
+        int month = calendar.get( Calendar.MONTH );
+        int day = calendar.get( Calendar.DAY_OF_MONTH );
 
         // Create a new instance of DatePickerDialog and return it
         return new DatePickerDialog( getActivity( ), this, year, month, day );
     }
 
     public void onDateSet( DatePicker view, int year, int month, int day ) {
-        listener.onDateChanged( createCalendar( year, month, day ) );
+        updateCalendar( year, month, day );
+        listener.onDateChanged( calendar );
     }
 
-    private Calendar createCalendar( int year, int month, int day ) {
-        Calendar calendar = Calendar.getInstance( );
+    private void updateCalendar( int year, int month, int day ) {
         calendar.set( Calendar.YEAR, year );
         calendar.set( Calendar.MONTH, month );
         calendar.set( Calendar.DAY_OF_MONTH, day );
-        return calendar;
     }
 }
