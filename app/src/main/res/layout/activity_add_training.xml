@@ -80,8 +80,12 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/training_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/recyclerView_padding_top"
+        android:paddingBottom="@dimen/recyclerView_padding_bottom">
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>
 
 

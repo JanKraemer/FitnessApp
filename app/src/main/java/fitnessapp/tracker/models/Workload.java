@@ -12,11 +12,17 @@ public class Workload {
     @DatabaseField( canBeNull = false )
     private Integer exerciseId;
 
-    @DatabaseField( canBeNull = false )
+    @DatabaseField
     private Integer reps;
 
-    @DatabaseField( canBeNull = false )
+    @DatabaseField
     private Integer weigth;
+
+    @DatabaseField
+    private Integer duration;
+
+    @DatabaseField
+    private Double distance;
 
     @DatabaseField( foreign = true )
     private Exercise parent;
@@ -59,5 +65,21 @@ public class Workload {
 
     public void setParent( Exercise parent ) {
         this.parent = parent;
+    }
+
+    public Integer getDuration( ) {
+        return duration;
+    }
+
+    public void setDuration( Integer duration ) {
+        this.duration = duration;
+    }
+
+    public Double getDistance( ) {
+        return distance;
+    }
+
+    public void setDistance( Double distance ) {
+        this.distance = distance;
     }
 }

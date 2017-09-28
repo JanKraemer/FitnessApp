@@ -16,9 +16,6 @@ public class Training {
     @DatabaseField( canBeNull = false )
     private long date;
 
-    @DatabaseField( canBeNull = false )
-    private String title;
-
     @ForeignCollectionField( eager = true )
     private ForeignCollection< Exercise > exercises;
 
@@ -31,14 +28,6 @@ public class Training {
 
     public void setDate( long date ) {
         this.date = date;
-    }
-
-    public String getTitle( ) {
-        return title;
-    }
-
-    public void setTitle( String title ) {
-        this.title = title;
     }
 
     public ForeignCollection< Exercise > getExercises( ) {
