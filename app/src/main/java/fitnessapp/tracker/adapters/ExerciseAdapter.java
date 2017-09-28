@@ -14,7 +14,7 @@ import fitnessapp.tracker.interfaces.OnItemClickListener;
 import fitnessapp.tracker.models.TrainingsType;
 import fitnessapp.tracker.models.Training;
 
-import static fitnessapp.tracker.interfaces.ZoneIds.FORMATTER;
+import static fitnessapp.tracker.interfaces.ZoneIds.DATE_FORMAT;
 
 public class ExerciseAdapter extends RecyclerView.Adapter< ExerciseViewHolder > {
 
@@ -72,7 +72,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter< ExerciseViewHolder > 
     }
 
     private String getTrainingDay( Training training ) {
-        return FORMATTER.format( training.getDate( ) );
+        return DATE_FORMAT.format( training.getDate( ) );
     }
 
 }

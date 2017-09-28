@@ -34,7 +34,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         int min = c.get( Calendar.MINUTE );
 
         // Create a new instance of TimePickerDialog and return it
-        return new TimePickerDialog( getActivity( ), this, min, hours, true );
+        return new TimePickerDialog( getActivity( ), this, hours, min, true );
     }
 
     @Override
@@ -45,7 +45,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
     private Calendar createCalendar( int hoursOfDay, int minute ) {
         final Calendar calendar = Calendar.getInstance( );
         calendar.set( Calendar.HOUR_OF_DAY, hoursOfDay );
-        calendar.set( Calendar.MONTH, minute );
+        calendar.set( Calendar.MINUTE, minute );
         return calendar;
     }
 

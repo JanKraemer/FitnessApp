@@ -6,5 +6,6 @@ import java.util.TimeZone;
 
 public interface ZoneIds {
     TimeZone TIME_ZONE = TimeZone.getTimeZone( "Europe/Berlin" );
-    SimpleDateFormat FORMATTER = new SimpleDateFormat( "dd.MM.yyyy", Locale.GERMANY );
+    SimpleDateFormat DATE_FORMAT = new SimpleDateFormat( "dd.MM.yyyy", Locale.GERMANY );
+    SimpleDateFormat TIME_FORMAT = new SimpleDateFormat( "h:mm", Locale.GERMANY );
 }

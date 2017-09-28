@@ -20,11 +20,12 @@ import java.util.Calendar;
 import fitnessapp.tracker.R;
 import fitnessapp.tracker.adapters.SpinnerAdapter;
 import fitnessapp.tracker.fragments.DatePickerFragment;
+import fitnessapp.tracker.fragments.TimePickerFragment;
 import fitnessapp.tracker.interfaces.OnDateChangedListener;
-import fitnessapp.tracker.interfaces.ZoneIds;
 import fitnessapp.tracker.models.SpinnerItem;
 
-import static fitnessapp.tracker.interfaces.ZoneIds.FORMATTER;
+import static fitnessapp.tracker.interfaces.ZoneIds.DATE_FORMAT;
+import static fitnessapp.tracker.interfaces.ZoneIds.TIME_FORMAT;
 
 public class AddTrainingActivity extends AppCompatActivity implements OnDateChangedListener {
 
@@ -37,6 +38,10 @@ public class AddTrainingActivity extends AppCompatActivity implements OnDateChan
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add_training );
+        initComponents( );
+    }
+
+    private void initComponents( ) {
         initActionbar( );
         initCalendarDate( );
         initDatePicker( );
@@ -130,17 +135,27 @@ public class AddTrainingActivity extends AppCompatActivity implements OnDateChan
         time.setOnClickListener( new View.OnClickListener( ) {
             @Override
             public void onClick( View v ) {
-
+                showTimePickerDialog( v );
             }
         } );
     }
 
     public void showDatePickerDialog( View v ) {
-        Bundle bundle = new Bundle();
-        bundle.putLong( getString( R.string.timeInMilis ), calendarDate.getTimeInMillis());
         DialogFragment newFragment = new DatePickerFragment( );
-        newFragment.setArguments( bundle );
+        addArgumentsToDialog( newFragment );
         newFragment.show( getSupportFragmentManager( ), "datePicker" );
+    }
+
+    private void addArgumentsToDialog( DialogFragment newFragment ) {
+        Bundle bundle = new Bundle( );
+        bundle.putLong( getString( R.string.timeInMilis ), calendarDate.getTimeInMillis( ) );
+        newFragment.setArguments( bundle );
+    }
+
+    public void showTimePickerDialog( View v ) {
+        DialogFragment newFragment = new TimePickerFragment( );
+        addArgumentsToDialog( newFragment );
+        newFragment.show( getSupportFragmentManager( ), "timePicker" );
     }
 
 
@@ -155,21 +170,20 @@ public class AddTrainingActivity extends AppCompatActivity implements OnDateChan
         } else if ( isDateYesterday( givenDate ) ) {
             date.setText( getString( R.string.yesterday ) );
         } else {
-            date.setText( FORMATTER.format( givenDate.getTime( ) ) );
+            date.setText( DATE_FORMAT.format( givenDate.getTime( ) ) );
         }
         calendarDate = givenDate;
+        time.setText( TIME_FORMAT.format( givenDate.getTime( ) ) );
     }
 
     private boolean isDateYesterday( Calendar givenDate ) {
         Calendar yesterday = getYesterdayAsDate( );
-        String a = FORMATTER.format( yesterday.getTime() );
-        String b = FORMATTER.format( givenDate.getTime() );
-        return FORMATTER.format( yesterday.getTime() ).equals( FORMATTER.format( givenDate.getTime(  ) ) );
+        return DATE_FORMAT.format( yesterday.getTime( ) ).equals( DATE_FORMAT.format( givenDate.getTime( ) ) );
     }
 
     private void initCalendarDate( ) {
-        calendarDate = Calendar.getInstance();
-        calendarDate.set( Calendar.HOUR, 8 );
+        calendarDate = Calendar.getInstance( );
+        calendarDate.set( Calendar.HOUR_OF_DAY, 8 );
         calendarDate.set( Calendar.MINUTE, 0 );
     }
 
