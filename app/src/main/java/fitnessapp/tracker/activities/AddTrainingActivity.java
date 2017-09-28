@@ -1,6 +1,8 @@
 package fitnessapp.tracker.activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -11,6 +13,7 @@ import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -22,6 +25,7 @@ import fitnessapp.tracker.adapters.SpinnerAdapter;
 import fitnessapp.tracker.fragments.DatePickerFragment;
 import fitnessapp.tracker.fragments.TimePickerFragment;
 import fitnessapp.tracker.interfaces.OnDateChangedListener;
+import fitnessapp.tracker.interfaces.OnItemClickListener;
 import fitnessapp.tracker.models.SpinnerItem;
 
 import static fitnessapp.tracker.interfaces.ZoneIds.DATE_FORMAT;
@@ -33,6 +37,8 @@ public class AddTrainingActivity extends AppCompatActivity implements OnDateChan
     private TextView date;
     private TextView time;
     private Calendar calendarDate;
+    private SpinnerAdapter adapter;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
@@ -43,11 +49,13 @@ public class AddTrainingActivity extends AppCompatActivity implements OnDateChan
 
     private void initComponents( ) {
         initActionbar( );
+        initFab( );
         initCalendarDate( );
         initDatePicker( );
         initTimePicker( );
         initSpinner( );
     }
+
 
     @Override
     public boolean onOptionsItemSelected( MenuItem item ) {
@@ -106,18 +114,50 @@ public class AddTrainingActivity extends AppCompatActivity implements OnDateChan
         }
     }
 
+    private void initFab( ) {
+        fab = ( FloatingActionButton ) findViewById( R.id.fab );
+        if ( fab != null ) {
+            fab.setOnClickListener( new View.OnClickListener( ) {
+                @Override
+                public void onClick( View view ) {
+                }
+            } );
+        }
+    }
+
     private void initSpinner( ) {
         ArrayList< SpinnerItem > list = new ArrayList<>( );
         list.add( new SpinnerItem( getString( R.string.bodybuilding ), R.drawable.ic_bodybuilding ) );
         list.add( new SpinnerItem( getString( R.string.endurance ), R.drawable.ic_cardio ) );
 
-        SpinnerAdapter adapter = new SpinnerAdapter( this, R.id.spinner_text, list );
-
+        adapter = new SpinnerAdapter( this, R.id.spinner_text, list );
         spinner = ( Spinner ) findViewById( R.id.type_spinner );
 
         if ( spinner != null ) {
             spinner.setAdapter( adapter );
+            spinner.setOnItemSelectedListener( createOnItemChangeListener( ) );
         }
+    }
+
+    private AdapterView.OnItemSelectedListener createOnItemChangeListener( ) {
+        return new AdapterView.OnItemSelectedListener( ) {
+            @Override
+            public void onItemSelected( AdapterView< ? > parent, View view, int position, long id ) {
+                final SpinnerItem item = adapter.getItem( position );
+                if ( item != null && item.getText( ) != null ) {
+                    if ( item.getText( ).equals( getString( R.string.bodybuilding ) ) ) {
+                        fab.setVisibility( View.VISIBLE );
+                    } else {
+                        fab.setVisibility( View.INVISIBLE );
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected( AdapterView< ? > parent ) {
+
+            }
+        };
     }
 
     private void initDatePicker( ) {

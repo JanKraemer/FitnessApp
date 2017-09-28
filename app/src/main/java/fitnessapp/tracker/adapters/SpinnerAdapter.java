@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import fitnessapp.tracker.R;
+import fitnessapp.tracker.interfaces.OnItemClickListener;
 import fitnessapp.tracker.models.SpinnerItem;
 
 public class SpinnerAdapter extends ArrayAdapter< SpinnerItem > {
@@ -34,14 +35,13 @@ public class SpinnerAdapter extends ArrayAdapter< SpinnerItem > {
 
     @NonNull
     @Override
-    public View getView( int position, View v, @NonNull ViewGroup parent ) {
-        View view = super.getView( position,v,parent );
+    public View getView( final int position, View v, @NonNull ViewGroup parent ) {
+        View view = super.getView( position, v, parent );
         setValues( view, items.get( position ) );
         return view;
     }
 
-    private void setValues( View view, SpinnerItem item )
-    {
+    private void setValues( View view, SpinnerItem item ) {
         TextView lbl = ( TextView ) view.findViewById( R.id.spinner_text );
         lbl.setText( item.getText( ) );
         CircleImageView image = ( CircleImageView ) view.findViewById( R.id.spinner_image );

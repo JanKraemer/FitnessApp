@@ -42,7 +42,6 @@ public class ExerciseAdapter extends RecyclerView.Adapter< ExerciseViewHolder > 
     @Override
     public void onBindViewHolder( ExerciseViewHolder holder, int position ) {
         Training training = trainings.get( position );
-        holder.title.setText( training.getTitle( ) );
         if( training.wasToday( ) ) {
             holder.day.setText( context.getString( R.string.today ) );
         }else if ( training.wasYesterday() ){

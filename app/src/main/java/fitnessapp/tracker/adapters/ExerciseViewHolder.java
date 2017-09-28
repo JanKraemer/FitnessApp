@@ -14,7 +14,6 @@ public class ExerciseViewHolder extends RecyclerView.ViewHolder {
     private OnItemClickListener clickListener;
     private CardView cardView;
     CircleImageView image;
-    TextView title;
     TextView day;
 
     public ExerciseViewHolder( View itemView, OnItemClickListener clickListener ) {
@@ -22,7 +21,6 @@ public class ExerciseViewHolder extends RecyclerView.ViewHolder {
         this.clickListener = clickListener;
         this.cardView = ( CardView ) itemView.findViewById( R.id.training );
         image = ( CircleImageView ) itemView.findViewById( R.id.training_image );
-        title = ( TextView ) itemView.findViewById( R.id.training_title );
         day = ( TextView ) itemView.findViewById( R.id.training_day );
     }
 

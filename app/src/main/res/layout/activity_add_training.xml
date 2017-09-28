@@ -1,91 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:fitsSystemWindows="false"
-              android:focusable="true"
-              android:focusableInTouchMode="true"
-              android:orientation="vertical"
-              android:weightSum="2"
-              tools:context="fitnessapp.tracker.activities.AddTrainingActivity">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
 
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/training_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/text_margin_right"
-        android:layout_marginStart="@dimen/text_margin_left"
-        android:layout_marginTop="@dimen/text_margin_top"
-        android:hint="@string/title"
-        android:inputType="textCapSentences"
-        android:textSize="@dimen/text_size"/>
-
-    <Spinner
-        android:id="@+id/type_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/spinner_card_height"
-        android:layout_gravity="end"
-        android:layout_marginEnd="@dimen/spinner_margin_right"
-        android:layout_marginTop="@dimen/spinner_margin_top"/>
+    tools:context="fitnessapp.tracker.activities.AddTrainingActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <Spinner
+            android:id="@+id/type_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spinner_card_height"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/spinner_margin_right"
+            android:layout_marginTop="@dimen/spinner_margin_top"/>
 
         <LinearLayout
-            android:layout_width="@dimen/shadow_item_width"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
+            <LinearLayout
+                android:layout_width="@dimen/shadow_item_width"
+                android:layout_height="wrap_content"/>
 
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/training_date"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/text_margin_between"
-                android:layout_marginStart="@dimen/text_margin_between"
-                android:layout_marginTop="@dimen/text_margin_top"
-                android:focusable="false"
-                android:text="@string/date"
-                android:textSize="@dimen/text_size"/>
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/training_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/text_margin_between"
+                    android:layout_marginStart="@dimen/text_margin_between"
+                    android:layout_marginTop="@dimen/text_margin_top"
+                    android:focusable="false"
+                    android:text="@string/date"
+                    android:textSize="@dimen/text_size"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/training_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/text_margin_right"
+                    android:layout_marginStart="@dimen/text_margin_between"
+                    android:layout_marginTop="@dimen/text_margin_top"
+                    android:focusable="false"
+                    android:text="@string/time"
+                    android:textSize="@dimen/text_size"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/training_list"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:paddingBottom="@dimen/recyclerView_padding_bottom"
+            android:paddingTop="@dimen/recyclerView_padding_top">
+        </android.support.v7.widget.RecyclerView>
 
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/training_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/text_margin_right"
-                android:layout_marginStart="@dimen/text_margin_between"
-                android:layout_marginTop="@dimen/text_margin_top"
-                android:focusable="false"
-                android:text="@string/time"
-                android:textSize="@dimen/text_size"/>
-
-        </LinearLayout>
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/training_list"
-        android:layout_width="match_parent"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/recyclerView_padding_top"
-        android:paddingBottom="@dimen/recyclerView_padding_bottom">
-    </android.support.v7.widget.RecyclerView>
-</LinearLayout>
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_add_black_24dp"/>
+</android.support.design.widget.CoordinatorLayout>
 
 
