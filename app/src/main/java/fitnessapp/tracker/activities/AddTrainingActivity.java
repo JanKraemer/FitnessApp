@@ -24,6 +24,7 @@ import fitnessapp.tracker.R;
 import fitnessapp.tracker.adapters.SpinnerAdapter;
 import fitnessapp.tracker.fragments.DatePickerFragment;
 import fitnessapp.tracker.fragments.TimePickerFragment;
+import fitnessapp.tracker.helpers.DateHelper;
 import fitnessapp.tracker.interfaces.OnDateChangedListener;
 import fitnessapp.tracker.interfaces.OnItemClickListener;
 import fitnessapp.tracker.models.SpinnerItem;
@@ -44,13 +45,13 @@ public class AddTrainingActivity extends AppCompatActivity implements OnDateChan
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add_training );
+        calendarDate = DateHelper.initCalendarDate();
         initComponents( );
     }
 
     private void initComponents( ) {
         initActionbar( );
         initFab( );
-        initCalendarDate( );
         initDatePicker( );
         initTimePicker( );
         initSpinner( );
@@ -207,7 +208,7 @@ public class AddTrainingActivity extends AppCompatActivity implements OnDateChan
     public void onDateChanged( Calendar givenDate ) {
         if ( DateUtils.isToday( givenDate.getTimeInMillis( ) ) ) {
             date.setText( getString( R.string.today ) );
-        } else if ( isDateYesterday( givenDate ) ) {
+        } else if ( DateHelper.isDateYesterday( givenDate ) ) {
             date.setText( getString( R.string.yesterday ) );
         } else {
             date.setText( DATE_FORMAT.format( givenDate.getTime( ) ) );
@@ -216,20 +217,5 @@ public class AddTrainingActivity extends AppCompatActivity implements OnDateChan
         time.setText( TIME_FORMAT.format( givenDate.getTime( ) ) );
     }
 
-    private boolean isDateYesterday( Calendar givenDate ) {
-        Calendar yesterday = getYesterdayAsDate( );
-        return DATE_FORMAT.format( yesterday.getTime( ) ).equals( DATE_FORMAT.format( givenDate.getTime( ) ) );
-    }
 
-    private void initCalendarDate( ) {
-        calendarDate = Calendar.getInstance( );
-        calendarDate.set( Calendar.HOUR_OF_DAY, 8 );
-        calendarDate.set( Calendar.MINUTE, 0 );
-    }
-
-    public Calendar getYesterdayAsDate( ) {
-        Calendar calendar = Calendar.getInstance( );
-        calendar.add( Calendar.DAY_OF_YEAR, -1 );
-        return calendar;
-    }
 }
