@@ -4,5 +4,5 @@ import java.util.Calendar;
 
 public interface OnDateChangedListener {
 
-    void onDateChanged( Calendar date);
+    void onDateChanged(Calendar date);
 }
