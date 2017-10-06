@@ -12,6 +12,7 @@ import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.stmt.QueryBuilder;
 import fitnessapp.tracker.R;
 import fitnessapp.tracker.adapters.ExerciseAdapter;
+import fitnessapp.tracker.database.DatabaseHelper;
 import fitnessapp.tracker.interfaces.OnItemClickListener;
 import fitnessapp.tracker.models.Training;
 import java.sql.SQLException;
@@ -19,8 +20,6 @@ import java.util.Calendar;
 import java.util.List;
 
 public class MonthFragment extends Fragment {
-
-    private static final String MONTH = "month";
 
     private ExerciseAdapter adapter;
 
