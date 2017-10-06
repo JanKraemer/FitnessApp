@@ -11,10 +11,14 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -165,6 +169,8 @@ public class AddTrainingActivity extends AppCompatActivity implements OnDateChan
         initDatePicker();
         initTimePicker();
         initSpinner();
+        initRecyclerView();
+
     }
 
     private void initDatePicker() {
@@ -173,6 +179,12 @@ public class AddTrainingActivity extends AppCompatActivity implements OnDateChan
             @Override
             public void onClick(View v) {
                 showDatePickerDialog(v);
+            }
+        });
+        date.setOnFocusChangeListener(new OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(final View v, final boolean hasFocus) {
+
             }
         });
     }
@@ -186,6 +198,17 @@ public class AddTrainingActivity extends AppCompatActivity implements OnDateChan
                 }
             });
         }
+    }
+
+    //TODO add Adapter to recyclerView
+    private void initRecyclerView() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.training_list);
+        LayoutManager layoutManager = new LinearLayoutManager(this);
+        if(recyclerView != null)
+        {
+            recyclerView.setLayoutManager(layoutManager);
+        }
+
     }
 
     private void initSpinner() {
