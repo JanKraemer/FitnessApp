@@ -48,4 +48,10 @@
     <dimen name="shadow_item_width">64dp</dimen>
     <dimen name="text_margin_between">8dp</dimen>
 
+    <!-- dimens for workout card -->
+    <dimen name="input_time_length">2</dimen>
+    <dimen name="input_distance_length">6</dimen>
+    <dimen name="label_padding">4dp</dimen>
+
+
 </resources>
