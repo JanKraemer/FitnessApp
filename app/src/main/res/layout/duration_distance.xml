@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/cardview_height"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.CircleImageView
+        android:id="@+id/duration_distance_icon"
+        android:layout_width="@dimen/image_radius"
+        android:layout_height="@dimen/image_radius"
+        android:padding="@dimen/image_padding" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/text_padding_right"
+        android:paddingStart="@dimen/text_padding_left">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/duration_distance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/text_margin_between"
+                android:layout_marginTop="@dimen/text_margin_top"
+                android:focusable="false"
+                android:inputType="phone"
+                android:maxLength="@dimen/input_distance_length"
+                android:textSize="@dimen/text_size" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/duration_distance_length"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/text_margin_between"
+                android:layout_marginStart="@dimen/text_margin_between"
+                android:layout_marginTop="@dimen/text_margin_top"
+                android:backgroundTint="@android:color/transparent"
+                android:labelFor="@id/training_date"
+                android:text="@string/distance"
+                android:textSize="@dimen/text_size" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
